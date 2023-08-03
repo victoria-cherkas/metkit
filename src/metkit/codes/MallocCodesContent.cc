@@ -27,6 +27,9 @@ namespace codes {
 
 MallocCodesContent::MallocCodesContent(void* data, size_t size, const eckit::Offset& offset):
     CodesContent(codes_handle_new_from_message(nullptr, data, size), true),
+
+
+    // TODO check the output of codes_handle_new_from_message... it could be null
     buffer_(data),
     length_(size),
     offset_(offset) {
