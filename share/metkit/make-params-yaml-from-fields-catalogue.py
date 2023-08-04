@@ -1,7 +1,7 @@
 import os
 import sys
 from collections import OrderedDict
-import psycopg2
+import psycopg
 import yaml
 
 DEFAULT_PORT = 5432
@@ -21,7 +21,7 @@ def main():
         print("ERROR: Environment variable not found: {}".format(e))
         sys.exit(1)
 
-    with psycopg2.connect(host=HOST, dbname=DB, user=USER, password=PASSWORD, port=PORT) as conn:
+    with psycopg.connect(host=HOST, dbname=DB, user=USER, password=PASSWORD, port=PORT) as conn:
         with conn.cursor() as cur:
             cur.execute(
                 "SELECT DISTINCT stream, type, levtype, param::INTEGER FROM fields WHERE param != '' ORDER BY stream, type, levtype, param::INTEGER"
